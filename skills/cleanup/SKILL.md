@@ -1,6 +1,6 @@
 ---
 name: cleanup
-version: 0.1.0
+version: 0.1.1
 description: >
   Schließt eine Session (einen Chat) ab, sodass der User sie archivieren kann und eine neue
   Session nahtlos weitermacht: aufräumen (Scratch, Testdateien, Worktrees, Testprojekte,
@@ -13,7 +13,7 @@ description: >
 
 Der Skill schließt die laufende Sitzung in fünf Punkten ab und endet mit einer abgehakten Liste. Er löscht nichts endgültig und archiviert die eigene Sitzung nicht; das tut der User.
 
-**Arbeitsweise:** absolute Pfade, `git -C <repo>`, nie `cd`. **Plan → Rückfrage → Ausführen:** Jede Rückfrage zeigt zuerst, was geschehen soll, und wartet auf ein Ja. Der Aufruf „räum auf" ist kein Ja zu einer Liste. Lehnt der User einen Punkt ab, geh zum nächsten weiter und vermerke ihn in der Schlussmeldung.
+**Arbeitsweise:** absolute Pfade, `git -C <repo>`, nie `cd`. Rufe `aios` über den Weiterleiter auf: mit dem absoluten Pfad aus dem Block `<aios-kernel-skills>` deines Master-Kontexts, als einzelnen Befehl ohne `cd`, `;`, `&&`, `|` oder Umleitung. **Plan → Rückfrage → Ausführen:** Jede Rückfrage zeigt zuerst, was geschehen soll, und wartet auf ein Ja. Der Aufruf „räum auf" ist kein Ja zu einer Liste. Lehnt der User einen Punkt ab, geh zum nächsten weiter und vermerke ihn in der Schlussmeldung.
 
 ## Begriffe
 
