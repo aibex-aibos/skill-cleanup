@@ -1,6 +1,6 @@
 ---
 name: cleanup
-version: 0.1.1
+version: 0.2.0
 description: >
   Schließt eine Session (einen Chat) ab, sodass der User sie archivieren kann und eine neue
   Session nahtlos weitermacht: aufräumen (Scratch, Testdateien, Worktrees, Testprojekte,
@@ -13,7 +13,7 @@ description: >
 
 Der Skill schließt die laufende Sitzung in fünf Punkten ab und endet mit einer abgehakten Liste. Er löscht nichts endgültig und archiviert die eigene Sitzung nicht; das tut der User.
 
-**Arbeitsweise:** absolute Pfade, `git -C <repo>`, nie `cd`. Rufe `aios` über den Weiterleiter auf: mit dem absoluten Pfad aus dem Block `<aios-kernel-skills>` deines Master-Kontexts, als einzelnen Befehl ohne `cd`, `;`, `&&`, `|` oder Umleitung. **Plan → Rückfrage → Ausführen:** Jede Rückfrage zeigt zuerst, was geschehen soll, und wartet auf ein Ja. Der Aufruf „räum auf" ist kein Ja zu einer Liste. Lehnt der User einen Punkt ab, geh zum nächsten weiter und vermerke ihn in der Schlussmeldung.
+**Arbeitsweise:** absolute Pfade, `git -C <repo>`, nie `cd`. Rufe `aibos` über den Weiterleiter auf: mit dem absoluten Pfad aus dem Block `<aibos-kernel-skills>` deines Master-Kontexts, als einzelnen Befehl ohne `cd`, `;`, `&&`, `|` oder Umleitung. **Plan → Rückfrage → Ausführen:** Jede Rückfrage zeigt zuerst, was geschehen soll, und wartet auf ein Ja. Der Aufruf „räum auf" ist kein Ja zu einer Liste. Lehnt der User einen Punkt ab, geh zum nächsten weiter und vermerke ihn in der Schlussmeldung.
 
 ## Begriffe
 
@@ -52,15 +52,15 @@ Suche im Prüfbereich nach Kandidaten:
 
 ## 2. Integrität
 
-1. `aios --integrity <projekt>` für jedes Projekt im Prüfbereich.
-2. Nicht committete Dateien: Biete an, sie zu committen (eine Liste je Repo mit Dateien und vorgeschlagener Commit-Nachricht, ein Ja). Was absichtlich nicht ins Repo gehört (z. B. `.aios/`, `@/@!Package/`), schlage für `.gitignore` vor statt zum Committen.
-3. Nach dem Ausführen `aios --integrity` noch einmal; das Ergebnis kommt in die Schlussmeldung.
+1. `aibos --integrity <projekt>` für jedes Projekt im Prüfbereich.
+2. Nicht committete Dateien: Biete an, sie zu committen (eine Liste je Repo mit Dateien und vorgeschlagener Commit-Nachricht, ein Ja). Was absichtlich nicht ins Repo gehört (z. B. `.aibos/`, `@/@!Package/`), schlage für `.gitignore` vor statt zum Committen.
+3. Nach dem Ausführen `aibos --integrity` noch einmal; das Ergebnis kommt in die Schlussmeldung.
 
 ## 3. Pushen
 
 1. Für jedes Repo im Prüfbereich: Remote und Stand (`git -C <repo> status -sb`, `git -C <repo> remote -v`).
 2. **Repos ohne Remote:**
-   - **Konzept-Repo** (Repo eines Projekts mit `@/`): Biete an, ein Repo nach der Regel *AIOS-Pakete — Vorgaben*, Zeile *Konzept-Repos*, anzulegen (Owner, Name, Sichtbarkeit aus der Regel; fehlt die Regel, frage danach). **Eigene Rückfrage je Repo** mit dem Befehl (`gh repo create <owner>/<name> --private --source <repo> --remote origin`). Bei Ja anlegen und in die Liste der Pushes aufnehmen.
+   - **Konzept-Repo** (Repo eines Projekts mit `@/`): Biete an, ein Repo nach der Regel *AIBOS-Pakete — Vorgaben*, Zeile *Konzept-Repos*, anzulegen (Owner, Name, Sichtbarkeit aus der Regel; fehlt die Regel, frage danach). **Eigene Rückfrage je Repo** mit dem Befehl (`gh repo create <owner>/<name> --private --source <repo> --remote origin`). Bei Ja anlegen und in die Liste der Pushes aufnehmen.
    - **Paket-Repo** (mit `manifest.yaml`, ohne `@/`): nur nennen; ein Paket-Repo im Hub anzulegen gehört zum Veröffentlichen.
    - **Testprojekt** und anderes: nur nennen.
 3. **Liste der Pushes:** Tabelle mit Repo, Zweig und Zahl der Commits vor dem Upstream; **ein Ja für alle**. Gepusht werden nur Zweige (`git -C <repo> push`, beim ersten Mal `push -u origin <zweig>`), **nie Tags**.

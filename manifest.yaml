@@ -1,9 +1,9 @@
 name: skill-cleanup
-version: 0.1.1
+version: 0.2.0
 type: skill
 description: Schließt eine Session ab - aufräumen, Integrität, pushen, Übergabe, Schlussmeldung
 requires:
-  aios: ">=0.6,<0.7"
+  aibos: ">=0.7,<0.8"
 contents:
   skills: [cleanup]
 license: Apache-2.0
