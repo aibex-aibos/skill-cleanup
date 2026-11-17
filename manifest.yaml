@@ -1,5 +1,5 @@
 name: skill-cleanup
-version: 0.2.0-rc1
+version: 0.2.0
 type: skill
 description: Schließt eine Session ab - aufräumen, Integrität, pushen, Übergabe, Schlussmeldung
 requires:
